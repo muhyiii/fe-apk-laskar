@@ -23,12 +23,21 @@ class _DaftarPenggunaState extends State<DaftarPengguna> {
   TextEditingController gender = TextEditingController();
   TextEditingController konfirmasi = TextEditingController();
 
-  List<DropdownMenuItem<String>> get dropdownItems {
-    List<DropdownMenuItem<String>> menuItems = [
+  List<DropdownMenuItem<String>> get genderItem {
+    List<DropdownMenuItem<String>> itemGender = [
       DropdownMenuItem(child: Text("Laki - Laki"), value: "Laki-Laki"),
       DropdownMenuItem(child: Text("Perempuan"), value: "Perempuan"),
     ];
-    return menuItems;
+    return itemGender;
+  }
+
+  List<DropdownMenuItem<String>> get roleItem {
+    List<DropdownMenuItem<String>> itemRole = [
+      DropdownMenuItem(child: Text("Marketing"), value: "Marketing"),
+      DropdownMenuItem(child: Text("Produksi"), value: "Produksi"),
+      DropdownMenuItem(child: Text("Freelancer"), value: "Freelancer"),
+    ];
+    return itemRole;
   }
 
   PageController formController =
@@ -232,90 +241,50 @@ class _DaftarPenggunaState extends State<DaftarPengguna> {
                                                     gender.text = newValue!;
                                                   });
                                                 },
-                                                items: dropdownItems),
-                                            // TextFormField(
-                                            //   controller: gender,
-                                            //   cursorColor: putih,
-                                            //   style: TextStyle(
-                                            //       color: Colors.white,
-                                            //       height: 1,
-                                            //       fontSize: lebar / 25),
-                                            //   decoration: InputDecoration(
-                                            //     prefix: DropdownButton(
-                                            //         onChanged:
-                                            //             (String? newV)  {
-                                            //           setState(() {
-                                            //             gender.text = newV!;
-                                            //           });
-                                            //         },
-                                            //         value: gender,
-                                            //         dropdownColor: Colors.green,
-                                            //         items: [
-                                            //           DropdownMenuItem(
-                                            //               child: Text("USA"),
-                                            //               value: "USA"),
-                                            //           DropdownMenuItem(
-                                            //               child: Text("Canada"),
-                                            //               value: "Canada"),
-                                            //         ]),
-                                            //     labelText: 'Jenis Kelamin',
-                                            //     labelStyle:
-                                            //         TextStyle(color: putih),
-                                            //     enabledBorder:
-                                            //         OutlineInputBorder(
-                                            //       borderSide: BorderSide(
-                                            //           width: 2, color: putih),
-                                            //       borderRadius:
-                                            //           BorderRadius.circular(10),
-                                            //     ),
-                                            //     focusedBorder:
-                                            //         OutlineInputBorder(
-                                            //       borderSide: BorderSide(
-                                            //           width: 2, color: putih),
-                                            //       borderRadius:
-                                            //           BorderRadius.circular(10),
-                                            //     ),
-                                            //     errorBorder: OutlineInputBorder(
-                                            //       borderSide: BorderSide(
-                                            //           width: 2, color: putih),
-                                            //       borderRadius:
-                                            //           BorderRadius.circular(10),
-                                            //     ),
-                                            //   ),
-                                            // ),
-                                            TextFormField(
-                                              controller: role,
-                                              cursorColor: putih,
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  height: 1,
-                                                  fontSize: lebar / 25),
-                                              decoration: InputDecoration(
-                                                labelText: 'Role',
-                                                labelStyle:
-                                                    TextStyle(color: putih),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      width: 2, color: putih),
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
+                                                items: genderItem),
+                                            DropdownButtonFormField(
+                                                decoration: InputDecoration(
+                                                  labelText: 'Role',
+                                                  labelStyle:
+                                                      TextStyle(color: putih),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        width: 2, color: putih),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                  ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        width: 2, color: putih),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                  ),
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        width: 2, color: putih),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                  ),
                                                 ),
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      width: 2, color: putih),
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                errorBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      width: 2, color: putih),
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                              ),
-                                            ),
+                                                dropdownColor: bg,
+                                                value: selectedValue,
+                                                autofocus: false,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    height: 1,
+                                                    fontSize: lebar / 25),
+                                                onChanged: (String? newValue) {
+                                                  setState(() {
+                                                    role.text = newValue!;
+                                                  });
+                                                },
+                                                items: roleItem),
                                           ]),
                                     ),
                                     Container(

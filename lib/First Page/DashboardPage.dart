@@ -87,7 +87,14 @@ class _DashboardPageState extends State<DashboardPage> {
   void initState() {
     // TODO: implement initState
     initializeDateFormatting();
-
+    setState(() {
+      loading = true;
+    });
+    Timer(Duration(seconds: 1), () {
+      setState(() {
+        loading = false;
+      });
+    });
     getDB();
     getData();
     // getWifiName();
@@ -133,7 +140,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       height: lebar / 35,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(

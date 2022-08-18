@@ -51,12 +51,6 @@ class _AbsenPageState extends State<AbsenPage> {
 
   cekPanggilan(size) async {
     var db = await SharedPreferences.getInstance();
-
-    var a = db.getString('panggilanPengguna');
-    print(a);
-    setState(() {
-      namaPanggilan = db.getString('panggilanPengguna').toString();
-    });
     if (!db.containsKey('panggilanPengguna')) {
       Alert(
           context: context,
@@ -114,6 +108,11 @@ class _AbsenPageState extends State<AbsenPage> {
             )
           ]).show();
     }
+    var a = db.getString('panggilanPengguna');
+    print(a);
+    setState(() {
+      namaPanggilan = db.getString('panggilanPengguna').toString();
+    });
   }
 
   @override

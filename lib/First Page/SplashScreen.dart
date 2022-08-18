@@ -41,12 +41,21 @@ class _SplashScreenState extends State<SplashScreen>
                 e.tanggal.month == DateTime.now().month &&
                 e.tanggal.day == DateTime.now().day)
             .length;
+        // db.setInt('isAbsen', angka);
       });
 
       db.setInt('isAbsen', angka);
-      // print('angka' + angka);
+
+      print('angka' + angka);
     });
   }
+
+  // getDb() async {
+  //   var db = await SharedPreferences.getInstance();
+  //   if (db.containsKey('idPengguna')) {
+  //     getAbsen();
+  //   }
+  // }
 
   @override
   void initState() {
@@ -77,7 +86,7 @@ class _SplashScreenState extends State<SplashScreen>
               Animation<double> secondaryAnimation,
             ) {
               if (db.containsKey('idPengguna')) {
-                print(angka);
+                // print('angka' + angka.toString());
                 if (angka == 1) return DashboardPage();
                 return AbsenPage();
               }

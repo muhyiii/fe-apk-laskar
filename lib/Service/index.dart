@@ -13,7 +13,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiAkun {
-  final base = 'http://192.168.43.99:2012/akun';
+  final base = 'https://laskarseoapp.herokuapp.com/akun';
   daftarAkun(String nama, String username, String password, String gender,
       String role, context, lebar) async {
     try {
@@ -27,6 +27,8 @@ class ApiAkun {
             "gender": gender,
             "role": role
           }));
+      print(nama + username + password + gender + role);
+      print(jsonDecode(response.body));
       if (response.statusCode == 201) {
         var db = await SharedPreferences.getInstance();
         db.setInt('idPengguna', jsonDecode(response.body)['user']['id']);
@@ -119,30 +121,30 @@ class ApiAkun {
 
         // print(db.getString('dataPengguna'));
         Timer(Duration(milliseconds: 500), () {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (
-                BuildContext context,
-                Animation<double> animation,
-                Animation<double> secondaryAnimation,
-              ) {
-                if (b == 1) return DashboardPage();
-                return AbsenPage();
-              },
-              transitionDuration: Duration(seconds: 3),
-              transitionsBuilder: (
-                BuildContext context,
-                Animation<double> animation,
-                Animation<double> secondaryAnimation,
-                Widget child,
-              ) =>
-                  FadeTransition(
-                opacity: animation,
-                child: child,
+          Navigator.pushAndRemoveUntil(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                ) {
+                  if (b == 1) return DashboardPage();
+                  return AbsenPage();
+                },
+                transitionDuration: Duration(seconds: 3),
+                transitionsBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child,
+                ) =>
+                    FadeTransition(
+                  opacity: animation,
+                  child: child,
+                ),
               ),
-            ),
-          );
+              (e) => false);
         });
       } else {
         Alert(
@@ -245,7 +247,7 @@ class ApiAkun {
 }
 
 class ApiAbsen {
-  final base = 'http://192.168.43.99:2012/akun/pengguna';
+  final base = 'https://laskarseoapp.herokuapp.com/akun/pengguna';
 
   tambahAbsensi(String absen, String keterangan, context) async {
     var db = await SharedPreferences.getInstance();
@@ -290,6 +292,7 @@ class ApiAbsen {
       var db = await SharedPreferences.getInstance();
       Uri url = Uri.parse(base + '/${db.getInt('idPengguna')}/absensi');
       var response = await http.get(url);
+
       if (response.statusCode == 200) {
         ModelDataAbsensiPerPengguna absensi =
             modelDataAbsensiPerPenggunaFromJson(response.body.toString());
