@@ -50,12 +50,12 @@ class _SplashScreenState extends State<SplashScreen>
     });
   }
 
-  // getDb() async {
-  //   var db = await SharedPreferences.getInstance();
-  //   if (db.containsKey('idPengguna')) {
-  //     getAbsen();
-  //   }
-  // }
+  getDb() async {
+    var db = await SharedPreferences.getInstance();
+    if (db.containsKey('idPengguna')) {
+      getAbsen();
+    }
+  }
 
   @override
   void initState() {
@@ -69,9 +69,8 @@ class _SplashScreenState extends State<SplashScreen>
         upperBound: 1);
     controller.forward();
     super.initState();
-
+    getDb();
     startSplashScreen();
-    getAbsen();
   }
 
   startSplashScreen() async {

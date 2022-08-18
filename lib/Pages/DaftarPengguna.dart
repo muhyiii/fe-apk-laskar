@@ -112,7 +112,7 @@ class _DaftarPenggunaState extends State<DaftarPengguna> {
                               ),
                               Container(
                                 margin:
-                                    EdgeInsets.symmetric(vertical: lebar / 8),
+                                    EdgeInsets.symmetric(vertical: lebar / 9),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -140,7 +140,7 @@ class _DaftarPenggunaState extends State<DaftarPengguna> {
                                       ],
                                     ),
                                     Container(
-                                      margin: EdgeInsets.only(left: lebar / 7),
+                                      margin: EdgeInsets.only(left: lebar / 10),
                                       child: Text(
                                         'APP',
                                         style: TextStyle(
@@ -151,7 +151,7 @@ class _DaftarPenggunaState extends State<DaftarPengguna> {
                                 ),
                               ),
                               Container(
-                                height: tinggi / 3.7,
+                                height: tinggi / 3.5,
                                 width: lebar,
                                 child: PageView(
                                   controller: formController,
@@ -171,7 +171,7 @@ class _DaftarPenggunaState extends State<DaftarPengguna> {
                                               cursorColor: putih,
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  height: 1,
+                                                  height: 1.4,
                                                   fontSize: lebar / 25),
                                               decoration: InputDecoration(
                                                 labelText: 'Nama',
